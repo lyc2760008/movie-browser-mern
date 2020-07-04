@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { auth } from '../_actions/user_actions';
 import { useSelector, useDispatch } from "react-redux";
 
-export default function (SpecificComponent, option, adminRoute = null) {
+export default function (ComposedClass, reload, adminRoute = null) {
     function AuthenticationCheck(props) {
 
         let user = useSelector(state => state.user);
@@ -14,7 +14,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
             dispatch(auth()).then(response => {
                 //Not Loggined in Status 
                 if (!response.payload.isAuth) {
-                    if (option) {
+                    if (reload) {
                         props.history.push('/login')
                     }
                     //Loggined in Status 
@@ -25,7 +25,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
                     }
                     //Logged in Status, but Try to go into log in page 
                     else {
-                        if (option === false) {
+                        if (reload === false) {
                             props.history.push('/')
                         }
                     }
@@ -35,7 +35,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
         }, [])
 
         return (
-            <SpecificComponent {...props} user={user} />
+            <ComposedClass {...props} user={user} />
         )
     }
     return AuthenticationCheck
