@@ -12,7 +12,8 @@ function RightMenu(props) {
   const logoutHandler = () => {
     axios.get(`${USER_SERVER}/logout`).then(response => {
       if (response.status === 200) {
-        props.history.push("/login");
+        //props.history.push("/login");
+        return null;
       } else {
         alert('Log Out Failed')
       }
@@ -33,8 +34,17 @@ function RightMenu(props) {
   } else {
     return (
       <Menu mode={props.mode}>
+        <Menu.Item key="app">
+          <a href='/rate'>Top Rated</a>
+        </Menu.Item>
+        <Menu.Item key="app2">
+          <a href='/popular'>Most Popular</a>
+        </Menu.Item>
+        <Menu.Item key="app1">
+          <a href='/upcoming'>Upcoming</a>
+        </Menu.Item>
         <Menu.Item key="logout">
-          <a onClick={logoutHandler}>Logout</a>
+          <a onClick={logoutHandler} href="/login">Logout</a>
         </Menu.Item>
       </Menu>
     )
