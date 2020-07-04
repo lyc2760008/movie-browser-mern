@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 
 const { Title } = Typography;
-function LandingPage() {
+function Upcoming() {
 
     const user = useSelector(state => state.user)
     const buttonRef = useRef(null);
@@ -20,7 +20,7 @@ function LandingPage() {
     const [User, setUser] = useState('')
 
     useEffect(() => {
-        const endpoint = `${API_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`;
+        const endpoint = `${API_URL}movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`;
         fetchMovies(endpoint);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -67,7 +67,7 @@ function LandingPage() {
         let endpoint = '';
         setLoading(true)
         //console.log('CurrentPage', CurrentPage)
-        endpoint = `${API_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=${CurrentPage + 1}`;
+        endpoint = `${API_URL}movie/upcoming?api_key=${API_KEY}&language=en-US&page=${CurrentPage + 1}`;
         fetchMovies(endpoint);
 
     }
@@ -99,7 +99,7 @@ function LandingPage() {
             }
 
             {User && User && 
-                <Title style={{ width: '95%', margin: '1rem auto' }} level={2} > Welcome to Movie Browser, {User}! Movies Playing Now: </Title> }
+                <Title style={{ width: '95%', margin: '1rem auto' }} level={2} > Welcome to Movie Browser, {User}! Upcoming Movies: </Title> }
                 <hr />
             <div style={{ width: '85%', margin: '1rem auto' }}>
              
@@ -131,4 +131,4 @@ function LandingPage() {
     )
 }
 
-export default LandingPage
+export default Upcoming

@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 
 const { Title } = Typography;
-function LandingPage() {
+function SearchPage() {
 
     const user = useSelector(state => state.user)
     const buttonRef = useRef(null);
@@ -21,6 +21,12 @@ function LandingPage() {
 
     useEffect(() => {
         const endpoint = `${API_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`;
+        fetchMovies(endpoint);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    useEffect(() => {
+        const endpoint = `${API_URL}search/movie/?api_key=${API_KEY}&query=star&language=en-US&page=1`;
         fetchMovies(endpoint);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -47,6 +53,21 @@ function LandingPage() {
         }
       };
 
+      const searchHandler = (searchValue) => {
+        fetch(`${API_URL}search/movie/?api_key=${API_KEY}&query=star&language=en-US&page=1`)
+            .then(result => result.json())
+            .then(result => {
+                // console.log(result)
+                // console.log('Movies',...Movies)
+                // console.log('result',...result.results)
+                setMovies([...Movies, ...result.results])
+                setMainMovieImage(MainMovieImage || result.results[0])
+                setCurrentPage(result.page)
+            }, setLoading(false))
+            .catch(error => console.error('Error:', error)
+            )
+      };
+
     const fetchMovies = (endpoint) => {
 
         fetch(endpoint)
@@ -66,7 +87,7 @@ function LandingPage() {
     const loadMoreItems = () => {
         let endpoint = '';
         setLoading(true)
-        //console.log('CurrentPage', CurrentPage)
+        console.log('CurrentPage', CurrentPage)
         endpoint = `${API_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=${CurrentPage + 1}`;
         fetchMovies(endpoint);
 
@@ -81,7 +102,7 @@ function LandingPage() {
         if (windowBottom >= docHeight - 1) {
 
             // loadMoreItems()
-            //console.log('clicked')
+            console.log('clicked')
             buttonRef.current.click();
 
         }
@@ -131,4 +152,4 @@ function LandingPage() {
     )
 }
 
-export default LandingPage
+export default SearchPage

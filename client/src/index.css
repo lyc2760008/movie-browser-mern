@@ -37,3 +37,8 @@ input.error {
   height: 5px;
   margin-top: -12px;
 }
+
+.profile :hover{
+  cursor: pointer;
+  box-shadow: 0 0 30px #232629;
+}
