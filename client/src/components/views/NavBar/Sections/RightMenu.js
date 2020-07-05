@@ -41,7 +41,7 @@ function RightMenu(props) {
           <a href='/popular'>Most Popular</a>
         </Menu.Item>
         <Menu.Item key="app1">
-          <a href='/upcoming'>Upcoming</a>
+          <a href='/upcoming'>Upcomings</a>
         </Menu.Item>
         <Menu.Item key="logout">
           <a onClick={logoutHandler} href="/login">Logout</a>
