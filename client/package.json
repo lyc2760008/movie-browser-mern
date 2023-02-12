@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "engine": {
-    "node": "13.9.0",
-    "npm": "6.13.7"
+    "node": "14.x",
+    "npm": "6.x"
   },
   "dependencies": {
     "antd": "^3.24.1",
