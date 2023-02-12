@@ -2,6 +2,10 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "engine": {
+    "node": "13.9.0",
+    "npm": "6.13.7"
+  },
   "dependencies": {
     "antd": "^3.24.1",
     "axios": "^0.19.2",
